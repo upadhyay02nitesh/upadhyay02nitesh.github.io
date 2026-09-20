@@ -465,7 +465,41 @@
     initTagSphere();
     initProjectModal();
     initContactForm();
+    initVoiceGreeting();
     initPreloader();
   }
+  /* ---------- Spoken intro (Web Speech API) ----------
+     Click-to-play only: browsers block autoplaying audio, and unprompted speech is
+     hostile to screen-reader and shared-space users. The button stays hidden unless
+     speechSynthesis exists, so unsupported browsers never see a dead control. */
+  function initVoiceGreeting() {
+    const btn = $('#voiceGreet');
+    if (!btn) return;
+    const synth = window.speechSynthesis;
+    if (!synth || typeof SpeechSynthesisUtterance === 'undefined') return;
+    btn.hidden = false;
+
+    const label = btn.querySelector('.btn-voice__label');
+    const stop = () => { synth.cancel(); btn.classList.remove('is-speaking'); label.textContent = 'Hear intro'; btn.setAttribute('aria-label', 'Play spoken intro'); };
+
+    btn.addEventListener('click', () => {
+      if (btn.classList.contains('is-speaking')) { stop(); return; }
+      const u = new SpeechSynthesisUtterance(btn.dataset.line);
+      u.rate = 0.98; u.pitch = 1.0;
+      // Prefer an en-IN voice when the platform ships one, else any English voice.
+      const voices = synth.getVoices();
+      u.voice = voices.find((v) => v.lang === 'en-IN') || voices.find((v) => v.lang.startsWith('en')) || null;
+      u.onend = stop;
+      u.onerror = stop;
+      btn.classList.add('is-speaking');
+      label.textContent = 'Stop';
+      btn.setAttribute('aria-label', 'Stop spoken intro');
+      synth.speak(u);
+    });
+
+    // Chrome keeps speaking across navigation otherwise.
+    window.addEventListener('beforeunload', () => synth.cancel());
+  }
+
   document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', boot) : boot();
 })();
