@@ -21,7 +21,10 @@
       gsap.fromTo('.hero-anim',
         { opacity: 0, y: 40, filter: 'blur(8px)' },
         { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1.1, ease: 'expo.out', stagger: 0.09, clearProps: 'filter' });
-      gsap.from('.site-nav', { y: -30, opacity: 0, duration: 1, ease: 'expo.out', delay: 0.2 });
+      // Fade only, and on the inner shell: the bar is fixed at top:0 with ~17px of
+      // headroom, so any upward translate clips against the viewport edge. An inline
+      // transform on .site-nav would also outrank .is-hidden and break hide-on-scroll.
+      gsap.from('.nav-shell', { opacity: 0, duration: .9, ease: 'power2.out', delay: 0.2, clearProps: 'opacity' });
     };
     document.documentElement.classList.contains('hero-ready') ? heroIntro() : document.addEventListener('app:ready', heroIntro, { once: true });
 

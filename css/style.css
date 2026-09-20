@@ -188,8 +188,9 @@ img { max-width: 100%; height: auto; }
 
 /* ---------- 6. Navbar ---------- */
 .site-nav {
-  padding: 0;
-  height: var(--nav-h);
+  /* Respect notch/status-bar insets so the bar is never clipped on iOS/Android. */
+  padding: env(safe-area-inset-top) 0 0;
+  height: calc(var(--nav-h) + env(safe-area-inset-top));
   transition: background .4s, border-color .4s, height .4s var(--ease-out), transform .45s var(--ease-out);
   border-bottom: 1px solid transparent;
   z-index: 1000;
