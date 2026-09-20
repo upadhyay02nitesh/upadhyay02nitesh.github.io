@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://upadhyay02nitesh.github.io/sitemap.xml

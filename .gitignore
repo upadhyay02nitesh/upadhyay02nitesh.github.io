@@ -1,0 +1,9 @@
+# OS / editor
+Thumbs.db
+desktop.ini
+.DS_Store
+.vscode/
+
+# Loose source files not part of the site
+IMG-*.jpg
+Nitesh_GenAI_Developer_Resume*.pdf

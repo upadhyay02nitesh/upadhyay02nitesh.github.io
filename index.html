@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nitesh Upadhyay — Generative AI Engineer | Agentic AI, RAG, MCP, LangGraph</title>
+  <meta name="description" content="Nitesh Upadhyay is a Generative AI Engineer with 2.6+ years building enterprise Agentic AI, multimodal RAG, MCP servers and LLM applications with Python, FastAPI, LangChain, LangGraph and AWS Bedrock." />
+  <meta name="keywords" content="Generative AI Engineer, Agentic AI, RAG, LangGraph, LangChain, MCP, AWS Bedrock, FastAPI, LLM, AI Agents, Nitesh Upadhyay" />
+  <meta name="author" content="Nitesh Upadhyay" />
+  <meta name="theme-color" content="#07070d" />
+  <meta name="color-scheme" content="dark" />
+  <link rel="canonical" href="https://upadhyay02nitesh.github.io/" />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:type" content="profile" />
+  <meta property="og:title" content="Nitesh Upadhyay — Generative AI Engineer" />
+  <meta property="og:description" content="Building production-grade Agentic AI, multimodal RAG and MCP-powered systems on AWS Bedrock." />
+  <meta property="og:url" content="https://upadhyay02nitesh.github.io/" />
+  <meta property="og:image" content="https://upadhyay02nitesh.github.io/assets/images/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="profile:first_name" content="Nitesh" />
+  <meta property="profile:last_name" content="Upadhyay" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Nitesh Upadhyay — Generative AI Engineer" />
+  <meta name="twitter:description" content="Agentic AI · RAG · MCP · LangGraph · AWS Bedrock" />
+  <meta name="twitter:image" content="https://upadhyay02nitesh.github.io/assets/images/og-image.png" />
+
+  <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png" />
+
+  <!-- Structured data for search engines -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Nitesh Upadhyay",
+    "jobTitle": "Generative AI Engineer",
+    "worksFor": { "@type": "Organization", "name": "Hexaware Technologies" },
+    "address": { "@type": "PostalAddress", "addressLocality": "Noida", "addressCountry": "IN" },
+    "email": "mailto:upadhyay02nitesh@gmail.com",
+    "url": "https://upadhyay02nitesh.github.io/",
+    "sameAs": [
+      "https://www.linkedin.com/in/nitesh02upadhyay/",
+      "https://github.com/upadhyay02nitesh"
+    ],
+    "alumniOf": "Lakshmi Narain College of Technology (LNCT), Bhopal",
+    "knowsAbout": ["Generative AI", "Agentic AI", "LangGraph", "LangChain", "RAG", "Model Context Protocol", "AWS Bedrock", "FastAPI", "Python"]
+  }
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Bootstrap (grid, utilities, modal) + icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+
+  <!-- Custom styles -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="preload" as="image" href="assets/images/nitesh-portrait.webp" type="image/webp" />
+
+  <!-- Flag JS + motion preference before first paint (prevents flash of hidden/visible content) -->
+  <script>
+    (function () {
+      var d = document.documentElement;
+      d.classList.remove('no-js');
+      d.classList.add('js');
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) d.classList.add('motion-ok');
+    })();
+  </script>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- ============ PRELOADER ============ -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader__inner">
+      <div class="preloader__mark">NU</div>
+      <div class="preloader__log mono">
+        <span>› initializing agent graph</span>
+        <span>› connecting MCP servers</span>
+        <span>› warming up retriever</span>
+      </div>
+      <div class="preloader__bar"><span></span></div>
+    </div>
+  </div>
+
+  <!-- ============ AMBIENT BACKGROUND + CURSOR ============ -->
+  <canvas id="bg-canvas" aria-hidden="true"></canvas>
+  <div class="bg-grid" aria-hidden="true"></div>
+  <div class="bg-noise" aria-hidden="true"></div>
+
+  <div class="cursor" aria-hidden="true">
+    <canvas class="cursor__trail"></canvas>
+    <div class="cursor__ring"></div>
+    <div class="cursor__dot"></div>
+  </div>
+
+  <!-- ============ NAVBAR ============ -->
+  <header>
+    <nav class="navbar site-nav fixed-top" id="siteNav" aria-label="Primary">
+      <div class="container nav-shell">
+        <a class="navbar-brand brand" href="#hero" aria-label="Nitesh Upadhyay — home">
+          <span class="brand__mark">NU</span>
+          <span class="brand__name">Nitesh<span class="text-grad">.ai</span></span>
+        </a>
+
+        <ul class="nav-links d-none d-lg-flex" role="list">
+          <li><a class="nav-link" href="#about">About</a></li>
+          <li><a class="nav-link" href="#skills">Skills</a></li>
+          <li><a class="nav-link" href="#experience">Experience</a></li>
+          <li><a class="nav-link" href="#projects">Projects</a></li>
+          <li><a class="nav-link" href="#credentials">Credentials</a></li>
+          <li><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+
+        <div class="d-flex align-items-center gap-2">
+          <a class="btn-ghost btn-sm-pill d-none d-sm-inline-flex magnetic" href="assets/resume/Nitesh_Upadhyay_GenAI_Resume.pdf" download>
+            <i class="bi bi-download" aria-hidden="true"></i> Resume
+          </a>
+          <button class="hamburger d-lg-none" id="menuToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Full-screen mobile overlay menu -->
+    <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Site menu" hidden>
+      <nav class="mobile-menu__inner" aria-label="Mobile">
+        <ol class="mobile-menu__links">
+          <li><a href="#about"><span class="mono">01</span>About</a></li>
+          <li><a href="#skills"><span class="mono">02</span>Skills</a></li>
+          <li><a href="#experience"><span class="mono">03</span>Experience</a></li>
+          <li><a href="#projects"><span class="mono">04</span>Projects</a></li>
+          <li><a href="#credentials"><span class="mono">05</span>Credentials</a></li>
+          <li><a href="#contact"><span class="mono">06</span>Contact</a></li>
+        </ol>
+        <div class="mobile-menu__foot">
+          <a class="btn-primary-glow" href="assets/resume/Nitesh_Upadhyay_GenAI_Resume.pdf" download><i class="bi bi-download" aria-hidden="true"></i> Download Resume</a>
+          <div class="social-row">
+            <a href="https://www.linkedin.com/in/nitesh02upadhyay/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+            <a href="https://github.com/upadhyay02nitesh" target="_blank" rel="noopener" aria-label="GitHub"><i class="bi bi-github"></i></a>
+            <a href="mailto:upadhyay02nitesh@gmail.com" aria-label="Email"><i class="bi bi-envelope"></i></a>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="hero" aria-labelledby="hero-title">
+      <canvas id="hero-canvas" aria-hidden="true"></canvas>
+      <div class="hero-fallback" aria-hidden="true"><div class="hero-fallback__orb"></div></div>
+      <div class="hero-labels" id="heroLabels" aria-hidden="true"></div>
+
+      <div class="container position-relative">
+        <div class="row align-items-center g-4 g-lg-5">
+          <div class="col-lg-6 hero-copy order-2 order-lg-1">
+            <p class="status-pill hero-anim"><span class="status-pill__dot"></span> Open to GenAI &amp; AI Engineer roles</p>
+
+            <h1 class="hero-title hero-anim" id="hero-title">
+              <span class="hero-title__hi mono">Hi, I'm</span>
+              Nitesh <span class="text-grad">Upadhyay</span>
+            </h1>
+
+            <p class="hero-role hero-anim mono" aria-live="off">
+              <span class="hero-role__prompt">&gt;_</span>
+              <span id="roleDecoder" data-roles='["Generative AI Engineer","Agentic AI Builder","RAG Systems Architect","MCP &amp; Multi-Agent Developer"]'>Generative AI Engineer</span>
+            </p>
+
+            <p class="hero-tagline hero-anim">
+              <span class="visually-hidden">I build production-grade agentic systems that plan, reason, call tools — and know when to ask a human.</span>
+              <span id="typedTagline" aria-hidden="true" data-text="I build production-grade agentic systems that plan, reason, call tools — and know when to ask a human.">I build production-grade agentic systems that plan, reason, call tools — and know when to ask a human.</span><span class="type-caret" aria-hidden="true"></span>
+            </p>
+
+            <div class="hero-cta hero-anim">
+              <a class="btn-primary-glow magnetic" href="assets/resume/Nitesh_Upadhyay_GenAI_Resume.pdf" download>
+                <i class="bi bi-download" aria-hidden="true"></i> Download Resume
+              </a>
+              <a class="btn-ghost magnetic" href="#contact">
+                Let's Talk <i class="bi bi-arrow-right" aria-hidden="true"></i>
+              </a>
+            </div>
+
+            <ul class="hero-meta hero-anim mono" role="list">
+              <li><i class="bi bi-briefcase" aria-hidden="true"></i> GenAI Engineer @ Hexaware</li>
+              <li><i class="bi bi-geo-alt" aria-hidden="true"></i> Noida, India</li>
+              <li><i class="bi bi-cloud" aria-hidden="true"></i> AWS Certified</li>
+            </ul>
+          </div>
+          <!-- Holographic 3D portrait: layered DOM planes tilted in 3D, sitting inside the Three.js neural network -->
+          <div class="col-lg-6 order-1 order-lg-2">
+            <div class="holo hero-anim" id="holo">
+              <div class="holo__stage" id="holoStage">
+                <div class="holo__glow" aria-hidden="true"></div>
+                <div class="holo__orbit" aria-hidden="true">
+                  <svg class="holo__ring holo__ring--1" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" /></svg>
+                  <svg class="holo__ring holo__ring--2" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" /></svg>
+                  <svg class="holo__ring holo__ring--3" viewBox="0 0 200 200"><circle cx="100" cy="100" r="98" /></svg>
+                  <div class="holo__disc"></div>
+                </div>
+                <div class="holo__photo">
+                  <img src="assets/images/nitesh-portrait.webp" alt="Portrait of Nitesh Upadhyay, Generative AI Engineer" width="703" height="820" fetchpriority="high" />
+                  <div class="holo__scan" aria-hidden="true"></div>
+                </div>
+                <div class="holo__belt" aria-hidden="true"></div>
+
+                <ul class="holo__chips" role="list" aria-label="Core expertise">
+                  <li class="holo__chip" style="--x:-2%;--y:14%;--z:90px;--d:0s"><span><i class="bi bi-robot" aria-hidden="true"></i> AI Agents</span></li>
+                  <li class="holo__chip" style="--x:-8%;--y:44%;--z:120px;--d:-1.5s"><span><i class="bi bi-diagram-3" aria-hidden="true"></i> LangGraph</span></li>
+                  <li class="holo__chip" style="--x:0%;--y:74%;--z:70px;--d:-3s"><span><i class="bi bi-database" aria-hidden="true"></i> RAG · Vectors</span></li>
+                  <li class="holo__chip holo__chip--r" style="--x:-4%;--y:20%;--z:110px;--d:-.8s"><span><i class="bi bi-plug" aria-hidden="true"></i> MCP Servers</span></li>
+                  <li class="holo__chip holo__chip--r" style="--x:-12%;--y:50%;--z:80px;--d:-2.2s"><span><i class="bi bi-cloud" aria-hidden="true"></i> AWS Bedrock</span></li>
+                  <li class="holo__chip holo__chip--r" style="--x:-2%;--y:78%;--z:130px;--d:-3.6s"><span><i class="bi bi-person-check" aria-hidden="true"></i> HITL</span></li>
+                </ul>
+
+                <div class="holo__hud" aria-hidden="true">
+                  <span class="holo__corner holo__corner--tl"></span><span class="holo__corner holo__corner--tr"></span>
+                  <span class="holo__corner holo__corner--bl"></span><span class="holo__corner holo__corner--br"></span>
+                  <span class="holo__readout mono">ID: NITESH.U<br />MODE: AGENTIC<br />SYS: <b>ONLINE</b></span>
+                </div>
+
+                <div class="holo__badge mono" aria-hidden="true">
+                  <span class="holo__bars"><i></i><i></i><i></i><i></i><i></i></span>
+                  <span>genai_engineer<span class="holo__badge-dim">.run()</span></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <a class="scroll-indicator" href="#about" aria-label="Scroll to About section">
+        <span class="scroll-indicator__mouse"><span></span></span>
+        <span class="mono">scroll</span>
+      </a>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section class="section" id="about" aria-labelledby="about-title">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <span class="section-kicker mono">01 — About</span>
+          <h2 class="section-title" id="about-title">Turning LLMs into systems <span class="text-grad">businesses can trust.</span></h2>
+        </div>
+
+        <div class="row g-4 g-lg-5 align-items-start">
+          <div class="col-lg-7" data-reveal>
+            <div class="about-copy">
+              <p class="lead-text">I'm a <strong>Generative AI Engineer</strong> with <strong>2.6+ years</strong> of experience building enterprise-grade AI applications with Python, FastAPI, LangChain, LangGraph, MCP, RAG and AWS Bedrock.</p>
+              <p>At <strong>Tata Consultancy Services</strong> and now <strong>Hexaware Technologies</strong>, I've shipped GenAI into automotive, ed-tech and enterprise bid-management — from RAG pipelines and multi-agent workflows to secure, cloud-native LLM APIs.</p>
+              <p>My focus is the gap between a promising prototype and production: agents with planning, tool calling, memory, checkpointing and <strong>Human-in-the-Loop</strong> approvals; MCP servers that give agents secure access to real enterprise systems; and retrieval stacks with hybrid search, reranking, guardrails and LLM evaluation built in from day one.</p>
+            </div>
+          </div>
+
+          <div class="col-lg-5" data-reveal>
+            <aside class="glass-card profile-card tilt" aria-label="Quick facts">
+              <div class="profile-card__head">
+                <span class="mono profile-card__file">profile.json</span>
+                <span class="dots" aria-hidden="true"><i></i><i></i><i></i></span>
+              </div>
+              <dl class="profile-card__list mono">
+                <div><dt>"role"</dt><dd>"Generative AI Engineer"</dd></div>
+                <div><dt>"company"</dt><dd>"Hexaware Technologies"</dd></div>
+                <div><dt>"location"</dt><dd>"Noida, India"</dd></div>
+                <div><dt>"focus"</dt><dd>["Agentic AI", "RAG", "MCP"]</dd></div>
+                <div><dt>"stack"</dt><dd>["Python", "LangGraph", "Bedrock"]</dd></div>
+                <div><dt>"open_to_work"</dt><dd class="bool">true</dd></div>
+              </dl>
+            </aside>
+          </div>
+        </div>
+
+        <div class="row g-3 g-lg-4 stats" role="list">
+          <div class="col-6 col-lg-3" role="listitem" data-reveal>
+            <div class="glass-card stat">
+              <div class="stat__num"><span class="counter" data-target="2.6" data-decimals="1">2.6</span><span class="stat__suffix">+</span></div>
+              <div class="stat__label">Years building production GenAI</div>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3" role="listitem" data-reveal>
+            <div class="glass-card stat">
+              <div class="stat__num"><span class="counter" data-target="90">90</span><span class="stat__suffix">%</span></div>
+              <div class="stat__label">Engagement lift on TCS iON with GenAI</div>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3" role="listitem" data-reveal>
+            <div class="glass-card stat">
+              <div class="stat__num"><span class="counter" data-target="80">80</span><span class="stat__suffix">%</span></div>
+              <div class="stat__label">Reduction in development effort</div>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3" role="listitem" data-reveal>
+            <div class="glass-card stat">
+              <div class="stat__num"><span class="stat__prefix">#1</span><span class="stat__sep">/</span><span class="counter" data-target="100">100</span><span class="stat__suffix">+</span></div>
+              <div class="stat__label">Teams — 1st place, TCS AI Fridays Hackathon</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SKILLS ============ -->
+    <section class="section" id="skills" aria-labelledby="skills-title">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <span class="section-kicker mono">02 — Skills</span>
+          <h2 class="section-title" id="skills-title">The stack behind <span class="text-grad">the agents.</span></h2>
+          <p class="section-sub">Drag or hover the sphere to spin it. Every tag is something I've used in production.</p>
+        </div>
+
+        <div class="row g-4 g-lg-5 align-items-center">
+          <div class="col-lg-5" data-reveal>
+            <div class="tag-sphere-wrap">
+              <div class="tag-sphere" id="tagSphere" aria-label="Skills cloud">
+                <!-- Populated by main.js from the category lists below (single source of truth) -->
+              </div>
+              <div class="tag-sphere-glow" aria-hidden="true"></div>
+            </div>
+          </div>
+
+          <div class="col-lg-7">
+            <div class="row g-3">
+              <div class="col-md-6" data-reveal>
+                <article class="glass-card skill-card" style="--accent: var(--c-violet)">
+                  <div class="skill-card__icon"><i class="bi bi-diagram-3" aria-hidden="true"></i></div>
+                  <h3>GenAI &amp; Agentic AI</h3>
+                  <ul class="chips" role="list" data-skill-group>
+                    <li>LangChain</li><li>LangGraph</li><li>MCP</li><li>CrewAI</li><li>AI Agents</li><li>Multi-Agent Systems</li><li>A2A</li><li>RAG</li><li>Advanced RAG</li><li>Multimodal RAG</li><li>Prompt Engineering</li><li>Tool / Function Calling</li><li>HITL</li><li>LLM Evaluation</li><li>Guardrails</li>
+                  </ul>
+                </article>
+              </div>
+              <div class="col-md-6" data-reveal>
+                <article class="glass-card skill-card" style="--accent: var(--c-blue)">
+                  <div class="skill-card__icon"><i class="bi bi-cpu" aria-hidden="true"></i></div>
+                  <h3>LLMs &amp; Retrieval</h3>
+                  <ul class="chips" role="list" data-skill-group>
+                    <li>OpenAI</li><li>AWS Bedrock</li><li>Claude</li><li>Gemini</li><li>Llama</li><li>Hugging Face</li><li>ChromaDB</li><li>FAISS</li><li>Pinecone</li><li>Semantic Search</li><li>Hybrid Search</li><li>Reranking</li>
+                  </ul>
+                </article>
+              </div>
+              <div class="col-md-6" data-reveal>
+                <article class="glass-card skill-card" style="--accent: var(--c-teal)">
+                  <div class="skill-card__icon"><i class="bi bi-cloud-check" aria-hidden="true"></i></div>
+                  <h3>Cloud &amp; MLOps</h3>
+                  <ul class="chips" role="list" data-skill-group>
+                    <li>AWS Bedrock</li><li>Lambda</li><li>S3</li><li>Textract</li><li>RDS</li><li>IAM</li><li>CloudWatch</li><li>Docker</li><li>CI/CD</li><li>Azure DevOps</li><li>Git</li><li>Linux</li><li>Observability</li>
+                  </ul>
+                </article>
+              </div>
+              <div class="col-md-6" data-reveal>
+                <article class="glass-card skill-card" style="--accent: var(--c-pink)">
+                  <div class="skill-card__icon"><i class="bi bi-braces" aria-hidden="true"></i></div>
+                  <h3>Languages, Backend &amp; Data</h3>
+                  <ul class="chips" role="list" data-skill-group>
+                    <li>Python</li><li>SQL</li><li>FastAPI</li><li>Django</li><li>Flask</li><li>REST APIs</li><li>JWT</li><li>RBAC</li><li>PostgreSQL</li><li>MySQL</li><li>MongoDB</li>
+                  </ul>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EXPERIENCE ============ -->
+    <section class="section" id="experience" aria-labelledby="experience-title">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <span class="section-kicker mono">03 — Experience</span>
+          <h2 class="section-title" id="experience-title">Shipping GenAI <span class="text-grad">in the enterprise.</span></h2>
+        </div>
+
+        <ol class="timeline" role="list">
+          <li class="timeline__line" aria-hidden="true"><span class="timeline__progress"></span></li>
+
+          <li class="timeline__item">
+            <div class="row g-3 g-lg-4">
+              <div class="col-lg-3 timeline__meta" data-reveal="left">
+                <span class="timeline__node" aria-hidden="true"></span>
+                <span class="timeline__date mono">Jan 2026 — Present</span>
+                <span class="timeline__loc"><i class="bi bi-geo-alt" aria-hidden="true"></i> Noida, India</span>
+                <span class="badge-current">Current</span>
+              </div>
+              <div class="col-lg-9" data-reveal="right">
+                <article class="glass-card timeline__card">
+                  <header>
+                    <h3>Generative AI Engineer</h3>
+                    <p class="timeline__company">Hexaware Technologies</p>
+                  </header>
+                  <p class="timeline__project mono"><i class="bi bi-folder2-open" aria-hidden="true"></i> Enterprise AI-Powered Bid Management System</p>
+                  <ul class="timeline__bullets">
+                    <li>Developed enterprise-grade <strong>Agentic AI</strong> solutions with Python, FastAPI, LangChain, LangGraph and AWS Bedrock — planning, reasoning, tool calling, memory, checkpointing, retries, state persistence and Human-in-the-Loop (HITL).</li>
+                    <li>Built <strong>MCP (Model Context Protocol)</strong> servers and <strong>Agent-to-Agent (A2A)</strong> workflows; developed advanced RAG with semantic search, hybrid retrieval, reranking, metadata filtering and LLM evaluation.</li>
+                    <li>Designed <strong>multimodal document intelligence</strong> with AWS Textract and Bedrock for proposal generation, summarization, question answering and workflow automation.</li>
+                    <li>Implemented Responsible AI, observability, monitoring, Docker, CI/CD and cloud-native deployment on Bedrock, Lambda, S3, RDS, IAM, CloudWatch and Azure DevOps.</li>
+                  </ul>
+                  <ul class="chips chips--sm" role="list">
+                    <li>LangGraph</li><li>MCP</li><li>A2A</li><li>AWS Bedrock</li><li>Textract</li><li>FastAPI</li><li>Azure DevOps</li>
+                  </ul>
+                </article>
+              </div>
+            </div>
+          </li>
+
+          <li class="timeline__item">
+            <div class="row g-3 g-lg-4">
+              <div class="col-lg-3 timeline__meta" data-reveal="left">
+                <span class="timeline__node" aria-hidden="true"></span>
+                <span class="timeline__date mono">Jan 2024 — Dec 2025</span>
+                <span class="timeline__loc"><i class="bi bi-geo-alt" aria-hidden="true"></i> Nagpur, India</span>
+              </div>
+              <div class="col-lg-9" data-reveal="right">
+                <article class="glass-card timeline__card">
+                  <header>
+                    <h3>Python Generative AI Developer</h3>
+                    <p class="timeline__company">Tata Consultancy Services (TCS)</p>
+                  </header>
+                  <p class="timeline__project mono"><i class="bi bi-folder2-open" aria-hidden="true"></i> Aptiv ADAS System Enhancement</p>
+                  <ul class="timeline__bullets">
+                    <li>Developed Generative AI solutions using the <strong>RESIM</strong> framework; built RAG pipelines with LangChain, ChromaDB and OpenAI, and Agentic AI workflows with LangGraph and CrewAI.</li>
+                  </ul>
+                  <p class="timeline__project mono"><i class="bi bi-folder2-open" aria-hidden="true"></i> TCS iON Learning Platform</p>
+                  <ul class="timeline__bullets">
+                    <li>Integrated Generative AI with Python, Flask, LangChain and Google Gemini, <strong>improving engagement by 90%</strong>.</li>
+                    <li>Developed secure FastAPI/Flask APIs with JWT authentication and optimized backend performance, <strong>reducing development effort by 80%</strong>.</li>
+                    <li>Built production-ready AI services with FastAPI, LangChain, OpenAI, Gemini, ChromaDB, Docker, Git and AWS, following Agile and enterprise backend best practices.</li>
+                  </ul>
+                  <ul class="chips chips--sm" role="list">
+                    <li>LangChain</li><li>CrewAI</li><li>ChromaDB</li><li>OpenAI</li><li>Gemini</li><li>Flask</li><li>JWT</li>
+                  </ul>
+                </article>
+              </div>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ PROJECTS ============ -->
+    <section class="section" id="projects" aria-labelledby="projects-title">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <span class="section-kicker mono">04 — Projects</span>
+          <h2 class="section-title" id="projects-title">Selected <span class="text-grad">builds.</span></h2>
+          <p class="section-sub">Agents, retrieval and automation, designed for production from the start. Open a card for the full breakdown.</p>
+        </div>
+
+        <div class="row g-4 projects-grid">
+          <!-- Project 1 -->
+          <div class="col-md-6 col-lg-4" data-reveal>
+            <article class="project-card tilt" data-project>
+              <div class="project-card__media">
+                <img src="assets/images/project-agentic-assistant.svg" alt="Architecture sketch: a LangGraph planner routing to MCP tools, memory and a human-approval gate" loading="lazy" width="640" height="400" />
+                <span class="project-card__tag mono">Agentic AI</span>
+              </div>
+              <div class="project-card__body">
+                <h3 class="project-card__title">Enterprise Agentic AI Assistant</h3>
+                <p class="project-card__desc">An autonomous assistant that plans, reasons and acts across enterprise systems via MCP — with memory, checkpointing and HITL approvals.</p>
+                <ul class="chips chips--sm" role="list"><li>LangGraph</li><li>MCP</li><li>FastAPI</li><li>AWS Bedrock</li></ul>
+                <div class="project-card__actions">
+                  <button class="btn-link-glow" type="button" data-bs-toggle="modal" data-bs-target="#projectModal">View details <i class="bi bi-arrow-up-right" aria-hidden="true"></i></button>
+                  <a class="icon-link-glow" href="https://github.com/upadhyay02nitesh" target="_blank" rel="noopener" aria-label="Enterprise Agentic AI Assistant on GitHub"><i class="bi bi-github"></i></a>
+                </div>
+              </div>
+              <div class="project-card__details" hidden>
+                <p>An enterprise-grade assistant built on LangGraph that can plan multi-step work, reason over results and safely act on business systems — pausing for human approval when it matters.</p>
+                <ul>
+                  <li>Autonomous planning, reasoning, memory, checkpointing, retries and <strong>Human-in-the-Loop (HITL)</strong> approvals with LangGraph.</li>
+                  <li>Built <strong>MCP (Model Context Protocol) servers</strong> so agents can securely access enterprise APIs, databases, file systems and third-party business apps.</li>
+                  <li>Multi-agent collaboration with tool calling, structured outputs, state persistence and <strong>Agent-to-Agent (A2A)</strong> communication for workflow automation.</li>
+                  <li>Deployed scalable FastAPI microservices on AWS (Bedrock, Lambda, S3, IAM, Docker, CloudWatch) with monitoring and observability.</li>
+                </ul>
+                <p class="mono small-label">Stack</p>
+                <ul class="chips chips--sm"><li>Python</li><li>LangGraph</li><li>LangChain</li><li>MCP</li><li>A2A</li><li>FastAPI</li><li>AWS Bedrock</li><li>Lambda</li><li>Docker</li><li>CloudWatch</li></ul>
+              </div>
+            </article>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="col-md-6 col-lg-4" data-reveal>
+            <article class="project-card tilt" data-project>
+              <div class="project-card__media">
+                <img src="assets/images/project-multimodal-rag.svg" alt="Pipeline sketch: documents flow through Textract, embeddings, hybrid vector search and a reranker into a cited LLM answer" loading="lazy" width="640" height="400" />
+                <span class="project-card__tag mono">Multimodal RAG</span>
+              </div>
+              <div class="project-card__body">
+                <h3 class="project-card__title">Multimodal RAG Knowledge Assistant</h3>
+                <p class="project-card__desc">Grounded Q&amp;A over PDFs, Word docs, images and scans — hybrid retrieval, reranking, citations and hallucination checks.</p>
+                <ul class="chips chips--sm" role="list"><li>LangChain</li><li>ChromaDB</li><li>FAISS</li><li>Textract</li></ul>
+                <div class="project-card__actions">
+                  <button class="btn-link-glow" type="button" data-bs-toggle="modal" data-bs-target="#projectModal">View details <i class="bi bi-arrow-up-right" aria-hidden="true"></i></button>
+                  <a class="icon-link-glow" href="https://github.com/upadhyay02nitesh" target="_blank" rel="noopener" aria-label="Multimodal RAG Knowledge Assistant on GitHub"><i class="bi bi-github"></i></a>
+                </div>
+              </div>
+              <div class="project-card__details" hidden>
+                <p>A document-intelligence assistant that turns messy enterprise files — including scanned pages and images — into accurate, cited answers.</p>
+                <ul>
+                  <li>Enterprise <strong>Multimodal RAG</strong> supporting PDFs, Word documents, images and scanned files using AWS Textract and vector databases.</li>
+                  <li>Semantic search, <strong>hybrid retrieval</strong>, metadata filtering, <strong>reranking</strong>, contextual compression and citation generation.</li>
+                  <li>LLM evaluation, <strong>hallucination detection</strong>, prompt engineering and guardrails to improve groundedness and answer quality.</li>
+                  <li>Secure FastAPI APIs with JWT authentication and Docker deployment for scalable document intelligence.</li>
+                </ul>
+                <p class="mono small-label">Stack</p>
+                <ul class="chips chips--sm"><li>Python</li><li>LangChain</li><li>OpenAI</li><li>ChromaDB</li><li>FAISS</li><li>AWS Textract</li><li>FastAPI</li><li>JWT</li><li>Docker</li></ul>
+              </div>
+            </article>
+          </div>
+
+          <!-- Project 3 -->
+          <div class="col-md-6 col-lg-4" data-reveal>
+            <article class="project-card tilt" data-project>
+              <div class="project-card__media">
+                <img src="assets/images/project-recruitment-agent.svg" alt="Workflow sketch: resumes are parsed, ATS-scored and semantically matched before interview scheduling with recruiter approval" loading="lazy" width="640" height="400" />
+                <span class="project-card__tag mono">AI Agent</span>
+              </div>
+              <div class="project-card__body">
+                <h3 class="project-card__title">AI Resume Screening &amp; Recruitment Agent</h3>
+                <p class="project-card__desc">Parses resumes, scores ATS fit, semantically matches candidates to roles and schedules interviews, with a recruiter kept in the loop.</p>
+                <ul class="chips chips--sm" role="list"><li>LangGraph</li><li>FastAPI</li><li>PostgreSQL</li><li>Bedrock</li></ul>
+                <div class="project-card__actions">
+                  <button class="btn-link-glow" type="button" data-bs-toggle="modal" data-bs-target="#projectModal">View details <i class="bi bi-arrow-up-right" aria-hidden="true"></i></button>
+                  <a class="icon-link-glow" href="https://github.com/upadhyay02nitesh" target="_blank" rel="noopener" aria-label="AI Resume Screening Agent on GitHub"><i class="bi bi-github"></i></a>
+                </div>
+              </div>
+              <div class="project-card__details" hidden>
+                <p>An AI recruitment agent that automates the busywork of hiring — screening, matching and scheduling — while recruiters keep the final say.</p>
+                <ul>
+                  <li>Resume parsing, <strong>ATS scoring</strong>, semantic candidate matching, interview scheduling and automated recruiter workflows.</li>
+                  <li>Agentic workflows in <strong>LangGraph</strong> with planning, tool calling, memory, multi-step reasoning and Human-in-the-Loop approvals.</li>
+                  <li>RAG pipelines on vector embeddings for candidate–job matching and <strong>personalized interview question</strong> generation.</li>
+                  <li>Observability, prompt optimization, LLM evaluation, Docker, CI/CD and AWS services for secure production deployment.</li>
+                </ul>
+                <p class="mono small-label">Stack</p>
+                <ul class="chips chips--sm"><li>Python</li><li>LangGraph</li><li>FastAPI</li><li>PostgreSQL</li><li>AWS Bedrock</li><li>Embeddings</li><li>Docker</li><li>CI/CD</li></ul>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CREDENTIALS: certifications, awards, education ============ -->
+    <section class="section" id="credentials" aria-labelledby="credentials-title">
+      <div class="container">
+        <div class="section-head" data-reveal>
+          <span class="section-kicker mono">05 — Credentials</span>
+          <h2 class="section-title" id="credentials-title">Certified, recognized, <span class="text-grad">always learning.</span></h2>
+        </div>
+
+        <h3 class="sub-head mono" data-reveal><i class="bi bi-patch-check" aria-hidden="true"></i> Certifications</h3>
+        <div class="row g-3 g-lg-4 mb-5">
+          <div class="col-md-4" data-reveal>
+            <article class="glass-card cred-card">
+              <div class="cred-card__badge cred-card__badge--aws" aria-hidden="true">AWS</div>
+              <h4>AWS Certified Developer – Associate</h4>
+              <p>Amazon Web Services</p>
+            </article>
+          </div>
+          <div class="col-md-4" data-reveal>
+            <article class="glass-card cred-card">
+              <div class="cred-card__badge cred-card__badge--aws" aria-hidden="true">AWS</div>
+              <h4>AWS Certified Cloud Practitioner</h4>
+              <p>Amazon Web Services</p>
+            </article>
+          </div>
+          <div class="col-md-4" data-reveal>
+            <article class="glass-card cred-card">
+              <div class="cred-card__badge cred-card__badge--azure" aria-hidden="true">DP-900</div>
+              <h4>Microsoft Azure Data Fundamentals</h4>
+              <p>Microsoft</p>
+            </article>
+          </div>
+        </div>
+
+        <h3 class="sub-head mono" data-reveal><i class="bi bi-trophy" aria-hidden="true"></i> Achievements</h3>
+        <div class="row g-3 g-lg-4 mb-5">
+          <div class="col-sm-6 col-lg-3" data-reveal>
+            <article class="glass-card award-card">
+              <span class="award-card__icon" aria-hidden="true"><i class="bi bi-trophy-fill"></i></span>
+              <h4>1st Place — TCS AI Fridays Hackathon</h4>
+              <p>Beat 100+ teams with an innovative AI solution.</p>
+            </article>
+          </div>
+          <div class="col-sm-6 col-lg-3" data-reveal>
+            <article class="glass-card award-card">
+              <span class="award-card__icon" aria-hidden="true"><i class="bi bi-lightbulb-fill"></i></span>
+              <h4>Most Innovative Idea Award</h4>
+              <p>For an enterprise Agentic AI design that improved workflow automation and productivity.</p>
+            </article>
+          </div>
+          <div class="col-sm-6 col-lg-3" data-reveal>
+            <article class="glass-card award-card">
+              <span class="award-card__icon" aria-hidden="true"><i class="bi bi-star-fill"></i></span>
+              <h4>Employee of the Month</h4>
+              <p>For delivering high-impact Generative AI solutions beyond expectations.</p>
+            </article>
+          </div>
+          <div class="col-sm-6 col-lg-3" data-reveal>
+            <article class="glass-card award-card">
+              <span class="award-card__icon" aria-hidden="true"><i class="bi bi-graph-up-arrow"></i></span>
+              <h4>Top 1% — M.P. Board</h4>
+              <p>99th percentile statewide in the Science stream.</p>
+            </article>
+          </div>
+        </div>
+
+        <h3 class="sub-head mono" data-reveal><i class="bi bi-mortarboard" aria-hidden="true"></i> Education</h3>
+        <div class="row g-3 g-lg-4">
+          <div class="col-md-4" data-reveal>
+            <article class="glass-card edu-card">
+              <span class="edu-card__year mono">2021 — 2023</span>
+              <h4>Master of Computer Applications</h4>
+              <p>Lakshmi Narain College of Technology (LNCT), Bhopal</p>
+              <span class="edu-card__score mono">CGPA 8.25 / 10</span>
+            </article>
+          </div>
+          <div class="col-md-4" data-reveal>
+            <article class="glass-card edu-card">
+              <span class="edu-card__year mono">2018 — 2021</span>
+              <h4>Bachelor of Science (PCM)</h4>
+              <p>Awadhesh Pratap Singh University (APSU), Rewa</p>
+              <span class="edu-card__score mono">68%</span>
+            </article>
+          </div>
+          <div class="col-md-4" data-reveal>
+            <article class="glass-card edu-card">
+              <span class="edu-card__year mono">2018</span>
+              <h4>Higher Secondary (PCM)</h4>
+              <p>MP Board of Secondary Education (MPBSE), Rewa</p>
+              <span class="edu-card__score mono">90% · Top 1%</span>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACT ============ -->
+    <section class="section section--contact" id="contact" aria-labelledby="contact-title">
+      <div class="container">
+        <div class="row g-4 g-lg-5">
+          <div class="col-lg-5" data-reveal="left">
+            <span class="section-kicker mono">06 — Contact</span>
+            <h2 class="section-title" id="contact-title">Let's build something <span class="text-grad">intelligent.</span></h2>
+            <p class="section-sub">Hiring for a GenAI, Agentic AI or LLM engineering role? Or need a production RAG or agent system? My inbox is open.</p>
+
+            <ul class="contact-list" role="list">
+              <li><a href="mailto:upadhyay02nitesh@gmail.com" class="contact-link"><span class="contact-link__icon"><i class="bi bi-envelope" aria-hidden="true"></i></span><span><small class="mono">Email</small>upadhyay02nitesh@gmail.com</span></a></li>
+              <li><a href="https://www.linkedin.com/in/nitesh02upadhyay/" target="_blank" rel="noopener" class="contact-link"><span class="contact-link__icon"><i class="bi bi-linkedin" aria-hidden="true"></i></span><span><small class="mono">LinkedIn</small>in/nitesh02upadhyay</span></a></li>
+              <li><a href="https://github.com/upadhyay02nitesh" target="_blank" rel="noopener" class="contact-link"><span class="contact-link__icon"><i class="bi bi-github" aria-hidden="true"></i></span><span><small class="mono">GitHub</small>upadhyay02nitesh</span></a></li>
+              <li><a href="tel:+916264534556" class="contact-link"><span class="contact-link__icon"><i class="bi bi-telephone" aria-hidden="true"></i></span><span><small class="mono">Phone</small>+91 62645 34556</span></a></li>
+            </ul>
+          </div>
+
+          <div class="col-lg-7" data-reveal="right">
+            <!-- Replace YOUR_FORM_ID with your Formspree form ID (see README). Until then, submissions fall back to your email client. -->
+            <form class="glass-card contact-form" id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" novalidate>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <div class="field">
+                    <input class="form-control" type="text" id="cf-name" name="name" placeholder=" " autocomplete="name" required maxlength="100" />
+                    <label for="cf-name">Your name</label>
+                    <span class="field__error" id="cf-name-err" role="alert"></span>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="field">
+                    <input class="form-control" type="email" id="cf-email" name="email" placeholder=" " autocomplete="email" required maxlength="150" />
+                    <label for="cf-email">Email address</label>
+                    <span class="field__error" id="cf-email-err" role="alert"></span>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="field">
+                    <input class="form-control" type="text" id="cf-company" name="company" placeholder=" " autocomplete="organization" maxlength="120" />
+                    <label for="cf-company">Company / Role (optional)</label>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="field">
+                    <textarea class="form-control" id="cf-message" name="message" rows="5" placeholder=" " required maxlength="3000"></textarea>
+                    <label for="cf-message">What are you building?</label>
+                    <span class="field__error" id="cf-message-err" role="alert"></span>
+                  </div>
+                </div>
+                <!-- Honeypot: bots fill it, humans never see it -->
+                <input type="text" name="_gotcha" class="hp-field" tabindex="-1" autocomplete="off" aria-hidden="true" />
+                <div class="col-12 d-flex flex-wrap align-items-center gap-3">
+                  <button class="btn-primary-glow magnetic" type="submit" id="cf-submit">
+                    <span class="btn-label">Send message</span> <i class="bi bi-send" aria-hidden="true"></i>
+                  </button>
+                  <p class="form-status mono" id="formStatus" role="status" aria-live="polite"></p>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer">
+    <div class="footer-line" aria-hidden="true"></div>
+    <div class="container d-flex flex-column flex-md-row align-items-center justify-content-between gap-3">
+      <p class="mb-0 mono">© <span id="year">2026</span> Nitesh Upadhyay · Built with Three.js, GSAP &amp; vanilla JS</p>
+      <div class="social-row">
+        <a href="https://www.linkedin.com/in/nitesh02upadhyay/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+        <a href="https://github.com/upadhyay02nitesh" target="_blank" rel="noopener" aria-label="GitHub"><i class="bi bi-github"></i></a>
+        <a href="mailto:upadhyay02nitesh@gmail.com" aria-label="Email"><i class="bi bi-envelope"></i></a>
+        <a href="#hero" class="back-top" aria-label="Back to top"><i class="bi bi-arrow-up"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============ PROJECT MODAL (Bootstrap) ============ -->
+  <div class="modal fade project-modal" id="projectModal" tabindex="-1" aria-labelledby="projectModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div>
+            <span class="mono modal-kicker" id="projectModalTag"></span>
+            <h3 class="modal-title" id="projectModalTitle">Project</h3>
+          </div>
+          <button type="button" class="modal-close" data-bs-dismiss="modal" aria-label="Close"><i class="bi bi-x-lg"></i></button>
+        </div>
+        <div class="modal-body">
+          <img class="modal-media" id="projectModalImg" src="" alt="" />
+          <div id="projectModalBody"></div>
+        </div>
+        <div class="modal-footer">
+          <a class="btn-ghost" href="https://github.com/upadhyay02nitesh" target="_blank" rel="noopener"><i class="bi bi-github" aria-hidden="true"></i> GitHub</a>
+          <a class="btn-primary-glow" href="#contact" data-bs-dismiss="modal">Discuss this project <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ SCRIPTS (deferred, in dependency order) ============ -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/scroll-animations.js" defer></script>
+  <script src="js/cursor.js" defer></script>
+  <!-- three-scene.js lazy-loads Three.js itself (ES module via dynamic import) only when 3D is appropriate -->
+  <script src="js/three-scene.js" defer></script>
+</body>
+</html>

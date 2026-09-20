@@ -1,0 +1,96 @@
+/* ==========================================================================
+   animations.css : keyframes + animation utilities.
+   All of these are neutralized under prefers-reduced-motion (see style.css §19).
+   ========================================================================== */
+
+/* Live status dot */
+@keyframes pulse-ring {
+  0%   { box-shadow: 0 0 0 0 rgba(46, 230, 201, .6); }
+  70%  { box-shadow: 0 0 0 10px rgba(46, 230, 201, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(46, 230, 201, 0); }
+}
+
+/* Typing caret */
+@keyframes caret-blink {
+  0%, 50% { opacity: 1; }
+  50.01%, 100% { opacity: 0; }
+}
+
+/* Scroll-indicator wheel */
+@keyframes scroll-wheel {
+  0%   { transform: translateY(0); opacity: 1; }
+  70%  { transform: translateY(12px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 0; }
+}
+
+/* Footer gradient line drift */
+@keyframes gradient-flow {
+  0%   { background-position: 0% 0; }
+  100% { background-position: 200% 0; }
+}
+.footer-line { animation: gradient-flow 6s linear infinite; }
+
+/* Shimmering gradient text */
+@keyframes grad-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
+}
+.text-grad, #roleDecoder { background-size: 200% 200%; animation: grad-shift 8s ease-in-out infinite; }
+
+/* Floating (used on the static fallback orb + skills glow) */
+@keyframes float-y {
+  0%, 100% { transform: translateY(-50%) translateY(0); }
+  50%      { transform: translateY(-50%) translateY(-18px); }
+}
+.hero-fallback__orb { animation: float-y 7s ease-in-out infinite; }
+
+@keyframes glow-breathe {
+  0%, 100% { opacity: .7; transform: scale(1); }
+  50%      { opacity: 1; transform: scale(1.08); }
+}
+.tag-sphere-glow { animation: glow-breathe 6s ease-in-out infinite; }
+
+/* Preloader log lines */
+@keyframes log-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: none; }
+}
+.preloader__log span { opacity: 0; animation: log-in .4s ease forwards; }
+.preloader__log span:nth-child(1) { animation-delay: .1s; }
+.preloader__log span:nth-child(2) { animation-delay: .45s; }
+.preloader__log span:nth-child(3) { animation-delay: .8s; }
+
+@keyframes bar-fill { to { width: 100%; } }
+.preloader__bar span { animation: bar-fill 1.2s cubic-bezier(.65, 0, .35, 1) forwards; }
+
+/* Form success pop */
+@keyframes pop-in {
+  0%   { transform: scale(.9); opacity: 0; }
+  60%  { transform: scale(1.03); opacity: 1; }
+  100% { transform: scale(1); }
+}
+.form-status.is-success, .form-status.is-error { animation: pop-in .45s var(--ease-out); }
+
+/* Button sheen sweep on hover */
+.btn-primary-glow { overflow: hidden; }
+.btn-primary-glow::after {
+  content: ""; position: absolute; top: 0; left: -60%; width: 40%; height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, .35), transparent);
+  transform: skewX(-20deg);
+  transition: left .7s var(--ease-out);
+}
+.btn-primary-glow:hover::after { left: 130%; }
+
+/* Spinner for form submit */
+@keyframes spin { to { transform: rotate(360deg); } }
+.is-loading .bi { animation: spin 1s linear infinite; display: inline-block; }
+
+/* Holographic portrait */
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes holo-scan { 0% { background-position: 0 100%; } 100% { background-position: 0 -100%; } }
+@keyframes chip-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+@keyframes bars { from { height: 3px; } to { height: 14px; } }
+
+@keyframes spin-z1 { from { transform: translateZ(-50px) rotate(0); } to { transform: translateZ(-50px) rotate(360deg); } }
+@keyframes spin-z2 { from { transform: translateZ(-70px) rotate(0); } to { transform: translateZ(-70px) rotate(360deg); } }
+@keyframes spin-z3 { from { transform: translateZ(10px) rotate(0); } to { transform: translateZ(10px) rotate(360deg); } }
